@@ -1,13 +1,15 @@
 <template>
-<div class="pagination">
-  <div class="mr-5">
-    <p>Mostrando {{ dronesLimit }} de {{dronesTotal}}</p>
-  </div>
-  <b-pagination-nav :link-gen="query"
-   :number-of-pages="totalPages"
-    use-router
-    pills ></b-pagination-nav>
-</div>
+<b-row>
+  <b-col class="col-12 text-center text-md-right">
+    <p>Showing {{ dronesLimit }} of {{dronesTotal}}</p>
+  </b-col>
+  <b-col class="col-12 pagination">
+    <b-pagination-nav :link-gen="query"
+    :number-of-pages="totalPages"
+      use-router
+      pills ></b-pagination-nav>
+  </b-col>
+</b-row>
 </template>
 
 <script>
@@ -48,8 +50,10 @@ export default {
 <style lang="scss" scoped>
 .pagination {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  @media (min-width: 720px) {
+      justify-content: flex-end;
+  }
 }
 
 </style>

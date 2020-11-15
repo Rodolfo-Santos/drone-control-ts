@@ -2,19 +2,19 @@
 <b-container class="mt-4">
   <Buscar/>
   <hr>
-  <DronesTabela/>
+  <Drones/>
 </b-container>
 </template>
 
 <script>
 import Buscar from '@/components/Buscar';
-import DronesTabela from '@/components/DronesTabela';
+import Drones from '@/components/Drones';
 
 export default {
   name: 'Home',
   components: {
     Buscar,
-    DronesTabela,
+    Drones,
   },
 };
 

@@ -10,3 +10,10 @@
 .text-upper {
   text-transform: uppercase;
 }
+
+.d-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

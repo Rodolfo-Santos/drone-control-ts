@@ -1,12 +1,18 @@
 <template>
-  <b-container>
-    <div>
-      <b-card :title='drone.name' :sub-title='drone.address' class='card-profile'>
+  <div class="drone-list-cards d-md-none">
+    <b-card class='card-profile mb-4' v-for="drone in drones" :key="drone.id">
+        <div class="id-drone id-card"> {{drone.id}} </div>
+         <b-link :to='{name: `drone`, params: {id: drone.id}}'>
+           <div>
+             <div class="card-title">{{ drone.name }}</div>
+             <div class="card-subtitle">{{ drone.address }}</div>
+           </div>
+          </b-link>
         <img :src='drone.image' :alt='drone.name'>
         <hr>
         <b-card-text>
           <b-row>
-            <b-col class="col-12 col-md-6">
+            <b-col>
               <b-row class='mb-4'>
                 <b-col cols='12' >
                   <div class='mb-1'> <b-icon-battery-charging></b-icon-battery-charging> Battery</div>
@@ -31,90 +37,88 @@
               </b-row>
               <b-row class='mb-4'>
                 <b-col cols='12' >
-                  <div class='mb-1'> <b-icon-cursor></b-icon-cursor> Status </div>
-                  <div 
+                  <b-button 
                     v-for='status in statusType'
                     :key='status.status'
                     v-show='drone.status === status.status'
-                    :class='`text-${status.color} text-status`'
+                    size='sm' 
+                    :variant='status.color'
                     :disabled='status.disable'
                     class='btn-status'
                   > {{ status.name }} 
-                </div>
+                  </b-button>
                 </b-col>
               </b-row>
             </b-col>
-            <b-col class="d-none d-md-block">
-              <img src='@/assets/drone-img.svg' alt='Woman and Drone' class='img-side'>
-            </b-col>
           </b-row>
         </b-card-text>
-
-        <b-button v-b-modal.modal-delete variant="danger">Delete</b-button>
-
-      </b-card>
-    </div>
-
-    <b-modal id="modal-delete" title="Are you Sure?" @ok="deleteDrone">
-      Do you really want to delete this drone?
-    </b-modal>
-    <b-modal id="modal-confirm-delete" title="Successfully" ok-only 
-      @hidden="$router.push({name: 'home'})"
-      @ok="$router.push({name: 'home'})"> 
-      Drone successfully deleted!
-    </b-modal>
-
-  </b-container>
+    </b-card>
+  </div>
 </template>
 
 <script>
-import DronesService from '@/services/drones';
-import { mapState } from 'vuex';
-
 import BatteryBar from '@/components/BatteryBar';
 import FlyBar from '@/components/FlyBar';
+import { mapState } from 'vuex';
 
 export default {
-  name: 'Drones',
-  props: ['id'],
+  name: 'DronesList',
+  props: {
+    drones: {
+      type: Array,
+      default: {},
+    }
+  },
 
   components: {
     BatteryBar,
     FlyBar,
   },
 
-  data() {
-    return {
-        drone: {},
-    };
-  },
-
-  methods: {
-    getDrone() {
-      DronesService.drone_unico(this.id).then( (response) => {
-        this.drone = response.data;
-      });
-    },
-
-    deleteDrone() {
-      DronesService.deletar(this.id).then( () => {
-        this.$bvModal.show('modal-confirm-delete')
-      })
-    },
-  },
-
   computed: {
     ...mapState(['statusType']),
-  },
+  }
 
-  created() {
-    this.getDrone();
-  },
-};
-
+}
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
+
+.card-title {
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1em;
+}
+
+.text-status {
+  font-size: 2em;
+}
+
+.img-side {
+  width: 100%;
+  padding: 0 50px;
+}
+
+.id-drone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  transform: translate(-50%, -50%);
+  
+  width: 50px;
+  height: 25px;
+
+  text-align: center;
+  cursor: pointer;
+  transition: .25s;
+
+  background-color: #007bff;
+  color: #fff;
+}
 
 .card-profile {
   position: relative;
@@ -129,13 +133,9 @@ export default {
   font-size: 2em;
 }
 
-.text-status {
-  font-size: 2em;
-}
-
-.img-side {
+.btn {
+  text-transform: uppercase;
   width: 100%;
-  padding: 0 50px;
 }
 
 </style>
