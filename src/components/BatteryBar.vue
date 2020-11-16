@@ -37,17 +37,14 @@
   </div>
 </template>
 
-<script>
-export default {
-    name: 'BatteryBar',
+<script lang="ts">
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
-    props: {
-      battery: {
-        type: Number,
-        default: 100,
-      },
-    },
-};
+@Component
+export default class BatteryBar extends Vue {
+  @Prop() private readonly battery!: number;
+
+}
 </script>
 
 <style scoped lang='scss'>

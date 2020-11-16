@@ -22,11 +22,13 @@
               <b-row class='mb-4'>
                 <b-col cols='6' >
                   <div class='mb-1'> <b-icon-clock-fill></b-icon-clock-fill> Max Speed</div>
-                  <div class='number-info'><span>{{ drone.max_speed }}</span>m/h</div>
+                  <div class='number-info'>
+                    <CaseNumber :val="drone.max_speed" unity="m/h"/>
+                  </div>
                 </b-col>
                 <b-col cols='6' >
                   <div class='mb-1'> <b-icon-clock-fill></b-icon-clock-fill> Average Speed</div>
-                  <div class='number-info'><span>{{ drone.average_speed }}</span>m/h</div>
+                  <CaseNumber :val="drone.average_speed" unity="m/h"/> 
                 </b-col>
               </b-row>
               <b-row class='mb-4'>
@@ -56,30 +58,29 @@
   </div>
 </template>
 
-<script>
-import BatteryBar from '@/components/BatteryBar';
-import FlyBar from '@/components/FlyBar';
+<script lang="ts">
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+
+import BatteryBar from '@/components/BatteryBar.vue';
+import FlyBar from '@/components/FlyBar.vue';
+import CaseNumber from '@/components/CaseNumber.vue';
 import { mapState } from 'vuex';
 
-export default {
-  name: 'DronesList',
-  props: {
-    drones: {
-      type: Array,
-      default: {},
-    }
-  },
+import { dotSplit } from '@/helpers';
 
+@Component({
   components: {
     BatteryBar,
     FlyBar,
+    CaseNumber,
   },
-
-  computed: {
-    ...mapState(['statusType']),
-  }
-
+  computed: mapState(['statusType']),
+})
+export default class DronesTable extends Vue {
+  @Prop() private readonly drones!: [];
+  private statusType!: [];
 }
+
 </script>
 
 <style lang="scss" scoped>

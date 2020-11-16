@@ -24,57 +24,51 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Watch } from 'vue-property-decorator';
+
 import DronesService from '@/services/drones';
 import { serialize } from '@/helpers';
 
-import DronesTable from '@/components/DronesTable';
-import DronesList from '@/components/DronesList';
+import DronesTable from '@/components/DronesTable.vue';
+import DronesList from '@/components/DronesList.vue';
 
-import DronesPaginar from '@/components/DronesPaginar';
+import DronesPaginar from '@/components/DronesPaginar.vue';
 
-export default {
-  name: 'DronesTabela',
+@Component({
   components: {
     DronesTable,
     DronesList,
     DronesPaginar,
   },
+})
 
-  data() {
-    return {
-      drones: '',
-      total: null,
-      page: null,
-      limit: 20,
-    };
-  },
+export default class DronesTabela extends Vue {
+  private drones: [] = [];
+  private total: number = 0;
+  private page: number = 1;
+  private limit: number = 20;
 
-  methods: {
-    getDrones() {
-      DronesService.listar(this.limit , this.url).then((response) => {
-        this.total = Number(response.headers['x-total-count']);
-        this.drones = response.data;
-      });
-    },
-  },
+  get url(): string {
+    return serialize(this.$route.query);
+  }
 
-  computed: {
-    url() {
-      return serialize(this.$route.query);
-    },
-  },
+  public getDrones(): void {
+    DronesService.listar(this.limit , this.url).then((response) => {
+      this.total = Number(response.headers['x-total-count']);
+      this.drones = response.data;
+    });
+  }
 
-  watch: {
-    url() {
+  @Watch('url')
+  private urlChanged() {
       this.getDrones();
-    },
-  },
+  }
 
-  created() {
+  private created() {
     this.getDrones();
-  },
-};
+  }
+}
 
 </script>
 

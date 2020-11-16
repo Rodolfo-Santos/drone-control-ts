@@ -5,7 +5,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    limit: 20,
     statusType: [
       {
         name: 'Flying',

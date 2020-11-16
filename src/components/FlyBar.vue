@@ -29,21 +29,14 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'FlyBar',
-  props: {
-    status: {
-      type: String,
-      default: 'flying',
-    },
-    value: {
-      type: Number,
-      default: 50,
-    },
-  },
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-};
+@Component
+export default class Flybar extends Vue {
+  @Prop() private readonly status!: string;
+  @Prop() private readonly value!: number;
+}
 </script>
 
 <style class='scoped' lang='scss'>

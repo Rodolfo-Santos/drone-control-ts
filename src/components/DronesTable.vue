@@ -29,10 +29,10 @@
               <BatteryBar :battery='drone.battery'/>
             </td>
             <td>
-              <span>{{ drone.max_speed }}</span>m/h
+              <CaseNumber :val="drone.max_speed" unity="m/h"/>
             </td>
             <td>
-              <span>{{ drone.average_speed }}</span>m/h
+              <CaseNumber :val="drone.average_speed" unity="m/h"/> 
             </td>
             <td class='content-center'>
                 <FlyBar :value='drone.fly' :status='drone.status'/>
@@ -54,28 +54,29 @@
       </table>
 </template>
 
-<script>
-import BatteryBar from '@/components/BatteryBar';
-import FlyBar from '@/components/FlyBar';
+<script lang="ts">
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+
+import BatteryBar from '@/components/BatteryBar.vue';
+import FlyBar from '@/components/FlyBar.vue';
+import CaseNumber from '@/components/CaseNumber.vue';
 import { mapState } from 'vuex';
 
-export default {
-  name: "DronesTable",
-  props: {
-    drones: {
-      type: Array,
-      default: {},
-    }
-  },
+import { dotSplit } from '@/helpers';
+
+@Component({
   components: {
     BatteryBar,
     FlyBar,
+    CaseNumber,
   },
-
-  computed: {
-    ...mapState(['statusType']),
-  }
+  computed: mapState(['statusType']),
+})
+export default class DronesTable extends Vue {
+  @Prop() private readonly drones!: [];
+  private statusType!: [];
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -83,10 +84,6 @@ export default {
 td {
   vertical-align: middle;
   position: relative;
-
-  span {
-    font-size: 1.75em;
-  }
 }
 
 .btn {

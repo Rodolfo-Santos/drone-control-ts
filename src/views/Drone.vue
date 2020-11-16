@@ -16,11 +16,11 @@
               <b-row class='mb-4'>
                 <b-col cols='6' >
                   <div class='mb-1'> <b-icon-clock-fill></b-icon-clock-fill> Max Speed</div>
-                  <div class='number-info'><span>{{ drone.max_speed }}</span>m/h</div>
+                  <CaseNumber :val="drone.max_speed" unity="m/h"/>
                 </b-col>
                 <b-col cols='6' >
                   <div class='mb-1'> <b-icon-clock-fill></b-icon-clock-fill> Average Speed</div>
-                  <div class='number-info'><span>{{ drone.average_speed }}</span>m/h</div>
+                  <CaseNumber :val="drone.average_speed" unity="m/h"/> 
                 </b-col>
               </b-row>
               <b-row class='mb-4'>
@@ -73,6 +73,7 @@ import { mapState } from 'vuex';
 
 import BatteryBar from '@/components/BatteryBar';
 import FlyBar from '@/components/FlyBar';
+import CaseNumber from '@/components/CaseNumber';
 
 export default {
   name: 'Drones',
@@ -81,6 +82,7 @@ export default {
   components: {
     BatteryBar,
     FlyBar,
+    CaseNumber,
   },
 
   data() {
@@ -98,8 +100,8 @@ export default {
 
     deleteDrone() {
       DronesService.deletar(this.id).then( () => {
-        this.$bvModal.show('modal-confirm-delete')
-      })
+        this.$bvModal.show('modal-confirm-delete');
+      });
     },
   },
 

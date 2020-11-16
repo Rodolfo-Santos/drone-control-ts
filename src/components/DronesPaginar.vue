@@ -12,39 +12,28 @@
 </b-row>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-export default {
-  props: {
-    dronesLimit: {
-      type: Number,
-      default: 1,
-    },
+@Component
+export default class DronesPaginar extends Vue {
+  @Prop() private readonly dronesLimit!: number;
+  @Prop() private readonly dronesTotal!: number;
 
-    dronesTotal: {
-      type: Number,
-      default: 1,
-    },
-  },
-
-  methods: {
-    query(pageNum) {
-      return {
-        query: {
-          ...this.$route.query,
-          _page: pageNum,
-        },
-      };
-    },
-  },
-
-  computed: {
-    totalPages() {
+  get totalPages() {
       const total = this.dronesTotal / this.dronesLimit;
       return (total !== Infinity) ? Math.ceil(total) : 0 ;
-    },
-  },
-};
+  }
+
+  private query(pageNum: number): {} {
+    return {
+      query: {
+        ...this.$route.query,
+        _page: pageNum,
+      },
+    };
+  }
+}
 </script>
 
 <style lang="scss" scoped>

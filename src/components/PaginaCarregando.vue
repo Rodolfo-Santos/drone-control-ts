@@ -7,10 +7,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'PaginaCarregando',
-};
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class PaginaCarregando extends Vue {
+
+}
 </script>
 
 <style lang='scss' scoped>

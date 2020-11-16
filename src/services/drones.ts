@@ -1,8 +1,9 @@
 import { http } from './config';
 
 export default {
-  listar: (limit: string | null, query: string | null) => {
-    if (limit === null) { limit = ''; } else { limit = `_limit=${limit}&`; }
+  listar: (limit: number | null, query: string | null) => {
+    let limitQuery: string;
+    if (limit === null) { limitQuery = ''; } else { limitQuery = `_limit=${limit}&`; }
     return http.get(`drones/?${limit}${query}`);
   },
 

@@ -133,20 +133,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import { mapState } from 'vuex';
 import { serialize } from '@/helpers';
 
-export default {
-  name: 'Buscar',
-  data() {
-    return {
-      busca: {
-        _page: '1',
-        _sort: 'id',
-        _order: 'asc',
-      },
-      sortBy: [
+@Component({
+  computed: mapState(['statusType']),
+})
+export default class Buscar extends Vue {
+  private busca: {} = { _page: '1', _sort: 'id', _order: 'asc' };
+  private sortBy: object[] = [
         {
           name: 'Drone ID',
           value: 'id',
@@ -179,40 +176,33 @@ export default {
           name: 'Current Fly',
           value: 'fly',
         },
-      ],
-    };
-  },
+  ];
 
-  methods: {
-    buscar() {
-        this.clean(this.busca);
-        if (serialize(this.$route.query) !== serialize(this.busca)) {
-          this.$router.push({query: this.busca});
-        }
-    },
+  get orderDisabled() {
+    if (this.busca === null) {
+      return true;
+    }
+  }
 
-    clean(obj) {
-      for (const propName in obj) {
-        if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
-          delete obj[propName];
-        }
+  private buscar(): void {
+    this.clean(this.busca);
+    if (serialize(this.$route.query) !== serialize(this.busca)) {
+      this.$router.push({ query: this.busca });
+    }
+  }
+
+  private clean(obj: any): void {
+    for (const propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
+        delete obj[propName];
       }
-    },
-  },
+    }
+  }
 
-  computed: {
-    ...mapState(['statusType']),
-    orderDisabled() {
-      if (this.busca._sort === null) {
-        return true;
-      }
-    },
-  },
-
-  created() {
+  private created() {
     this.buscar();
-  },
-};
+  }
+}
 </script>
 
 <style lang='scss' scoped>

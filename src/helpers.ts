@@ -6,3 +6,9 @@ export function serialize(obj: any) {
   }
   return queryString;
 }
+
+export function dotSplit(txt: string) {
+  const result = txt.split('.');
+  if (result.length > 1) { result[0] = result[0] + '.'; }
+  return result ;
+}
