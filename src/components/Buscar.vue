@@ -45,7 +45,7 @@
       <b-col class='col-12 col-md-4'>
         <b-form-group label='Status' label-for='input-status'>
           <b-form-select class='mb-3' v-model='busca.status' id='input-status' @change='buscar'>
-            <b-form-select-option :value='null' selected> </b-form-select-option>
+            <b-form-select-option :value='``' selected> </b-form-select-option>
             <b-form-select-option 
               :class='`text-${status.color} text-capitalize`' 
               :value='status.status' 
@@ -168,8 +168,10 @@ export default class Buscar extends Vue {
 
   private resetFields(): void {
     for ( const key in this.busca ) {
-      if (!['_page', '_order', '_sort'].includes(key)) { this.busca[key] = ''; }
+      if (!['_page', '_order'].includes(key)) { this.busca[key] = ''; }
     }
+    this.busca._sort = 'id';
+    this.busca.status = '';
     this.buscar();
   }
 
@@ -181,7 +183,9 @@ export default class Buscar extends Vue {
     }
   }
 
-  private created() { this.buscar(); }
+  private created() {
+    this.buscar();
+  }
 }
 
 </script>

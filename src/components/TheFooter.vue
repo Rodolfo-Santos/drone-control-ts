@@ -1,6 +1,6 @@
 <template>
   <footer class='bg-primary mt-4'>
-    <p>Desenvolvido por Rodolfo Santos - SolucX</p>
+    <p>Desenvolvido por <a href='https://rodolfo-santos.com/' target="_blank">Rodolfo Santos</a> - SolucX</p>
   </footer>
 </template>
 
