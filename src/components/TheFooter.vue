@@ -1,5 +1,5 @@
 <template>
-  <footer class='bg-primary'>
+  <footer class='bg-primary mt-4'>
     <p>Desenvolvido por Rodolfo Santos - SolucX</p>
   </footer>
 </template>
@@ -17,9 +17,7 @@ export default class TheFooter extends Vue {
 footer {
   padding: 25px 0;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1em;
   color: #fff;
-  position: relative;
-  top: 75px;
 }
 </style>

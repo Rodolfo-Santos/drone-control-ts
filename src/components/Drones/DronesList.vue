@@ -1,11 +1,11 @@
 <template>
-  <div class="drone-list-cards d-md-none">
-    <b-card class='card-profile mb-4' v-for="drone in drones" :key="drone.id">
-        <div class="id-drone id-card"> {{drone.id}} </div>
+  <div class='drone-list-cards d-md-none'>
+    <b-card class='card-profile mb-4' v-for='drone in drones' :key='drone.id'>
+        <div class='id-drone id-card'> {{drone.id}} </div>
          <b-link :to='{name: `drone`, params: {id: drone.id}}'>
            <div>
-             <div class="card-title">{{ drone.name }}</div>
-             <div class="card-subtitle">{{ drone.address }}</div>
+             <div class='card-title'>{{ drone.name }}</div>
+             <div class='card-subtitle'>{{ drone.address }}</div>
            </div>
           </b-link>
         <img :src='drone.image' :alt='drone.name'>
@@ -23,12 +23,12 @@
                 <b-col cols='6' >
                   <div class='mb-1'> <b-icon-clock-fill></b-icon-clock-fill> Max Speed</div>
                   <div class='number-info'>
-                    <CaseNumber :val="drone.max_speed" unity="m/h"/>
+                    <CaseNumber :val='drone.max_speed' unity='m/h'/>
                   </div>
                 </b-col>
                 <b-col cols='6' >
                   <div class='mb-1'> <b-icon-clock-fill></b-icon-clock-fill> Average Speed</div>
-                  <CaseNumber :val="drone.average_speed" unity="m/h"/> 
+                  <CaseNumber :val='drone.average_speed' unity='m/h'/> 
                 </b-col>
               </b-row>
               <b-row class='mb-4'>
@@ -58,15 +58,13 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import BatteryBar from '@/components/BatteryBar.vue';
 import FlyBar from '@/components/FlyBar.vue';
 import CaseNumber from '@/components/CaseNumber.vue';
 import { mapState } from 'vuex';
-
-import { dotSplit } from '@/helpers';
 
 @Component({
   components: {
@@ -83,7 +81,7 @@ export default class DronesTable extends Vue {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 
 .card-title {
   font-size: 2em;

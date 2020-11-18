@@ -1,18 +1,18 @@
 <template>
 <b-row>
-  <b-col class="col-12 text-center text-md-right">
+  <b-col class='col-12 text-center text-md-right'>
     <p>Showing {{ dronesLimit }} of {{dronesTotal}}</p>
   </b-col>
-  <b-col class="col-12 pagination">
-    <b-pagination-nav :link-gen="query"
-    :number-of-pages="totalPages"
+  <b-col class='col-12 pagination'>
+    <b-pagination-nav :link-gen='query'
+    :number-of-pages='totalPages'
       use-router
       pills ></b-pagination-nav>
   </b-col>
 </b-row>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
@@ -36,7 +36,7 @@ export default class DronesPaginar extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .pagination {
   display: flex;
   justify-content: center;

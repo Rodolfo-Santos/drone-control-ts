@@ -22,4 +22,7 @@ export default new VueRouter({
       props: true,
     },
   ],
+  scrollBehavior() {
+    return window.scrollTo({top: 0, behavior: 'smooth'});
+  },
 });

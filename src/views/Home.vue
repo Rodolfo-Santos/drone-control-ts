@@ -9,7 +9,7 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import Buscar from '@/components/Buscar.vue';
-import Drones from '@/components/Drones.vue';
+import Drones from '@/components/Drones/Drones.vue';
 
 @Component({
   components: {

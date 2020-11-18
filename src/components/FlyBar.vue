@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div v-if="status !== 'flying' && status !== 'success' && status !== 'repair'" 
+  <div class="text-center">
+    <div v-if='status !== `flying` && status !== `success` && status !== `repair`' 
       data-balloon-length='medium'
       aria-label='Stoped'
       data-balloon-pos='up'>
-      <div class="bar-stripped">
+      <div class='bar-stripped'>
         <span></span>
         <span></span>
         <span></span>
@@ -14,7 +14,7 @@
     </div>
     <div v-else-if='value > 50' 
       data-balloon-length='medium'
-      :aria-label='`Coming - ${value}%`'
+      :aria-label='`Coming - ${value}`'
       data-balloon-pos='up'>
       <div>
         <b-form-input type='range' :value='value' disabled></b-form-input>
@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component

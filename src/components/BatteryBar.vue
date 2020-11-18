@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div class="text-center" 
     data-balloon-length='small'
     :aria-label='`${battery}%`'
     data-balloon-pos='up'>
