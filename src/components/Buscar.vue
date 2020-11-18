@@ -59,7 +59,10 @@
 
     <b-row>
       <b-col>
-        <a v-b-toggle.mais-opcoes class='btn-mais-opcoes text-primary'>More Options</a>
+        <div class="d-flex justify-content-between">
+          <a v-b-toggle.mais-opcoes class='btn-search'>More Options</a>
+          <a class='btn-search' @click='resetFields'>Clean filters <b-icon icon="x-octagon" aria-hidden="true"></b-icon></a>
+        </div>
         <b-collapse id='mais-opcoes' class='mt-2'>
           <b-row>
             <b-col class='col-12 col-md-6'>
@@ -78,7 +81,6 @@
             <b-col class='col-12 col-md-4'>
               <b-form-group label='Sort by' label-for='input-sort-by'>
                 <b-form-select class='mb-3' v-model='busca._sort' id='input-sort-by' @change='buscar'>
-                  <b-form-select-option :value='null'> </b-form-select-option>
                   <b-form-select-option 
                     v-for='item in sortBy' 
                     :value='item.value' 
@@ -119,7 +121,7 @@ import { serialize } from '@/helpers';
 })
 
 export default class Buscar extends Vue {
-  private busca: {} = { _page: '1', _sort: 'id', _order: 'asc' };
+  private busca: any = { _page: '1', _sort: 'id', _order: 'asc' };
   private sortBy: object[] = [
     {
       name: 'Drone ID',
@@ -164,6 +166,13 @@ export default class Buscar extends Vue {
     }
   }
 
+  private resetFields(): void {
+    for ( const key in this.busca ) {
+      if (!['_page', '_order', '_sort'].includes(key)) { this.busca[key] = ''; }
+    }
+    this.buscar();
+  }
+
   private clean(obj: any): void {
     for (const propName in obj) {
       if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
@@ -178,7 +187,12 @@ export default class Buscar extends Vue {
 </script>
 
 <style lang='scss' scoped>
-  .btn-mais-opcoes {
+  a.btn-search {
+    color: #002347;
+    transition: .25s;
     cursor: pointer;
+    &:hover {
+      color: #007bff;
+    }
   }
 </style>
