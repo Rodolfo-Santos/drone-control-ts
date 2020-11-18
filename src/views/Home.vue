@@ -6,17 +6,20 @@
 </b-container>
 </template>
 
-<script>
-import Buscar from '@/components/Buscar';
-import Drones from '@/components/Drones';
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator';
+import Buscar from '@/components/Buscar.vue';
+import Drones from '@/components/Drones.vue';
 
-export default {
-  name: 'Home',
+@Component({
   components: {
     Buscar,
     Drones,
   },
-};
+})
+export default class Home extends Vue {
+
+}
 
 </script>
 

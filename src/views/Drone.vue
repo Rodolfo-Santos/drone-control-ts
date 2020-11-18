@@ -67,52 +67,45 @@
   </b-container>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+
 import DronesService from '@/services/drones';
 import { mapState } from 'vuex';
 
-import BatteryBar from '@/components/BatteryBar';
-import FlyBar from '@/components/FlyBar';
-import CaseNumber from '@/components/CaseNumber';
+import BatteryBar from '@/components/BatteryBar.vue';
+import FlyBar from '@/components/FlyBar.vue';
+import CaseNumber from '@/components/CaseNumber.vue';
 
-export default {
-  name: 'Drones',
-  props: ['id'],
-
+@Component({
   components: {
     BatteryBar,
     FlyBar,
     CaseNumber,
   },
+  computed: mapState(['statusType']),
+})
+export default class Drones extends Vue {
+  @Prop() private readonly id !: number;
 
-  data() {
-    return {
-        drone: {},
-    };
-  },
+  private drone: {} = {};
 
-  methods: {
-    getDrone() {
-      DronesService.drone_unico(this.id).then( (response) => {
-        this.drone = response.data;
-      });
-    },
+  private getDrone(): void {
+    DronesService.drone_unico(this.id).then( (response) => {
+      this.drone = response.data;
+    });
+  }
 
-    deleteDrone() {
-      DronesService.deletar(this.id).then( () => {
-        this.$bvModal.show('modal-confirm-delete');
-      });
-    },
-  },
+  private deleteDrone(): void {
+    DronesService.deletar(this.id).then( () => {
+      this.$bvModal.show('modal-confirm-delete');
+    });
+  }
 
-  computed: {
-    ...mapState(['statusType']),
-  },
-
-  created() {
+  private created() {
     this.getDrone();
-  },
-};
+  }
+}
 
 </script>
 

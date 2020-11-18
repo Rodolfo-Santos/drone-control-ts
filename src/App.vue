@@ -11,10 +11,12 @@ import { Component, Vue } from 'vue-property-decorator';
 import TheHeader from '@/components/TheHeader.vue';
 import TheFooter from '@/components/TheFooter.vue';
 
-export default {
-  name: 'Home',
+@Component({
   components: { TheHeader, TheFooter },
-};
+})
+export default class Home extends Vue {
+
+}
 </script>
 
 <style lang='scss'>
