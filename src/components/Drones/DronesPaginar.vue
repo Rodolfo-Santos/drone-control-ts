@@ -36,7 +36,7 @@ export default class DronesPaginar extends Vue {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
 @import '@/scss/helpers/variaveis';
 
 .pagination {
@@ -46,5 +46,12 @@ export default class DronesPaginar extends Vue {
       justify-content: flex-end;
   }
 }
+.page-item.active .page-link {
+    background-color: $cor-padrao;
+    border-color: $cor-padrao;
+}
 
+.page-link {
+  color: $cor-padrao;
+}
 </style>

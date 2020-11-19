@@ -59,7 +59,7 @@ export default class Flybar extends Vue {
 }
 
 input[type='range']:disabled::-webkit-slider-thumb {
-  background-color: $cor-secundaria;
+  background-color: $cor-padrao;
 }
 
 input[type='range'].fly-bar-none:disabled::-webkit-slider-thumb {
@@ -68,12 +68,12 @@ input[type='range'].fly-bar-none:disabled::-webkit-slider-thumb {
 
 .arrow-fly-bar-going {
   right: 0;
-  border-left: 10px solid $cor-secundaria;
+  border-left: 10px solid $cor-padrao;
 }
 
 .arrow-fly-bar-coming {
   left: 0;
-  border-right: 10px solid $cor-secundaria;
+  border-right: 10px solid $cor-padrao;
 }
 
 .bar-stripped {
