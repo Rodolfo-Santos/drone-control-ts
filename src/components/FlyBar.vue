@@ -45,6 +45,7 @@ export default class Flybar extends Vue {
 </script>
 
 <style class='scoped' lang='scss'>
+@import '@/scss/helpers/variaveis';
 
 .arrow-fly {
   display: block;
@@ -58,7 +59,7 @@ export default class Flybar extends Vue {
 }
 
 input[type='range']:disabled::-webkit-slider-thumb {
-  background-color: #007bff;
+  background-color: $cor-secundaria;
 }
 
 input[type='range'].fly-bar-none:disabled::-webkit-slider-thumb {
@@ -67,12 +68,12 @@ input[type='range'].fly-bar-none:disabled::-webkit-slider-thumb {
 
 .arrow-fly-bar-going {
   right: 0;
-  border-left: 10px solid #007bff;
+  border-left: 10px solid $cor-secundaria;
 }
 
 .arrow-fly-bar-coming {
   left: 0;
-  border-right: 10px solid #007bff;
+  border-right: 10px solid $cor-secundaria;
 }
 
 .bar-stripped {

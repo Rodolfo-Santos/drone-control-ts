@@ -37,6 +37,8 @@ export default class DronesPaginar extends Vue {
 </script>
 
 <style lang='scss' scoped>
+@import '@/scss/helpers/variaveis';
+
 .pagination {
   display: flex;
   justify-content: center;

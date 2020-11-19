@@ -191,12 +191,14 @@ export default class Buscar extends Vue {
 </script>
 
 <style lang='scss' scoped>
-  a.btn-search {
-    color: #002347;
-    transition: .25s;
-    cursor: pointer;
-    &:hover {
-      color: #007bff;
-    }
+@import '@/scss/helpers/variaveis';
+
+a.btn-search {
+  color: darken($cor-padrao, 20%);
+  transition: .25s;
+  cursor: pointer;
+  &:hover {
+    color:$cor-padrao;
   }
+}
 </style>

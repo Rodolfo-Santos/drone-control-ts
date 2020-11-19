@@ -17,6 +17,7 @@ export default class PaginaCarregando extends Vue {
 </script>
 
 <style lang='scss' scoped>
+@import '@/scss/helpers/variaveis';
 
 .loading {
   text-align: center;
@@ -28,7 +29,7 @@ export default class PaginaCarregando extends Vue {
     width: 10px;
     height: 10px;
     border-radius: 10px;
-    background: #007bff;
+    background: $cor-secundaria;
     margin: 4px;
     animation: dots 0.6s cubic-bezier(0.6, 0.1, 1, 0.4) infinite alternate;
 

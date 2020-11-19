@@ -82,6 +82,7 @@ export default class DronesTable extends Vue {
 </script>
 
 <style lang='scss' scoped>
+@import '@/scss/helpers/variaveis';
 
 .card-title {
   font-size: 2em;
@@ -115,7 +116,7 @@ export default class DronesTable extends Vue {
   cursor: pointer;
   transition: .25s;
 
-  background-color: #007bff;
+  background-color: $cor-secundaria;
   color: #fff;
 }
 
