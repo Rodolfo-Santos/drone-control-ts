@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row>
-      <b-col class='col-12 col-md-2'>
+      <b-col class='col-4 col-md-2'>
         <b-form-group label='Drone ID' label-for='input-id'>
           <b-form-input
             id='input-id'
@@ -14,7 +14,7 @@
         </b-form-group>
       </b-col>
 
-      <b-col class='col-12 col-md-4'>
+      <b-col class='col-8 col-md-4'>
         <b-form-group label='Name' label-for='input-name'>
           <b-form-input
             id='input-name'
@@ -27,7 +27,7 @@
         </b-form-group>
       </b-col>
 
-      <b-col class='col-12 col-md-2'>
+      <b-col class='col-4 col-md-2'>
         <b-form-group label='Current Fly' label-for='input-currentFly'>
           <b-form-input
             id='input-currentFly'
@@ -42,7 +42,7 @@
         </b-form-group>
       </b-col>
 
-      <b-col class='col-12 col-md-4'>
+      <b-col class='col-8 col-md-4'>
         <b-form-group label='Status' label-for='input-status'>
           <b-form-select class='mb-3' v-model='busca.status' id='input-status' @change='buscar'>
             <b-form-select-option :value='``' selected> </b-form-select-option>
@@ -61,7 +61,7 @@
       <b-col>
         <div class="d-flex justify-content-between">
           <a v-b-toggle.mais-opcoes class='btn-search'>More Options</a>
-          <a class='btn-search' @click='resetFields'>Clean filters <b-icon icon="x-octagon" aria-hidden="true"></b-icon></a>
+          <a class='btn-search' @click='resetFields'>Clear filters <b-icon icon="x-octagon" aria-hidden="true"></b-icon></a>
         </div>
         <b-collapse id='mais-opcoes' class='mt-2'>
           <b-row>

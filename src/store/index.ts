@@ -10,13 +10,13 @@ export default new Vuex.Store({
         name: 'Flying',
         status: 'flying',
         color: 'primary',
-        disable: false,
+        disable: true,
       },
       {
         name: 'Charging',
         status: 'charging',
         color: 'info',
-        disable: false,
+        disable: true,
       },
       {
         name: 'Repair',
