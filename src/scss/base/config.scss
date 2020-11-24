@@ -1,12 +1,11 @@
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    margin: 0;
 }
 
 input[type=number] {
-    -moz-appearance:textfield;
+  -moz-appearance:textfield;
 }
 
 input[type=number],
@@ -14,10 +13,8 @@ input[type=text],
 select, textarea {
   box-shadow: 0 4px 8px rgba($color: #363636, $alpha: .2);
   border: none!important;
-
   &:hover, &:focus {
     outline: none;
-    
   }
 }
 
