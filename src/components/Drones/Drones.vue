@@ -1,6 +1,6 @@
 <template>
   <section>
-    <transition name='fade'  mode='out-in' appear>
+    <transition name='fade' mode='out-in' appear>
       <div v-if='loading' key='carregando'>
         <PaginaCarregando/>
       </div>
