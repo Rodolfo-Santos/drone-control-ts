@@ -116,7 +116,7 @@ export default class DronesTable extends Vue {
   cursor: pointer;
   transition: .25s;
 
-  background-color: $cor-secundaria;
+  background-color: $cor-padrao;
   color: #fff;
 }
 
